@@ -62,7 +62,8 @@ class BrefServiceProvider extends ServiceProvider
 
         // Store compiled views in `/tmp` because they are generated at runtime
         // and `/tmp` is the only writable directory on Lambda
-        Config::set('view.compiled', '/tmp/storage/framework/views');
+        Config::set('view.compiled', env(
+        'VIEW_COMPILED_PATH', '/tmp/storage/framework/views'));
 
         // Allow all proxies because AWS Lambda runs behind API Gateway
         // See https://github.com/fideloper/TrustedProxy/issues/115#issuecomment-503596621
